@@ -239,7 +239,9 @@
             if (WORDLISTS[language].indexOf(word) == -1) {
                 console.log("Finding closest match to " + word);
                 var nearestWord = findNearestWord(word);
-                return word + " not in wordlist, did you mean " + nearestWord + "?";
+				var nextNearestWords = findNextNearestWords(word);
+				var nearestWords = findWordsStartEndWithSameLetter(word);
+                return word + " not in wordlist, did you mean " + nearestWord + "?" + " Maybe: " + nextNearestWords + "? How about: " +  nearestWords + "If none of them work, just replace it with '?'";
             }
         }
  
@@ -316,13 +318,27 @@ function DerivePublicAddresses(phrase, word = "(no missing word)")
      var address84 = DerivePublicAddress(path84)
      var pathEth = "m/44'/60'/0'/0";
      var addressEth = DerivePublicAddress(pathEth)
- 
- 
+     var pathEth32 = "m/44'/60'/0'";
+     var addressEth32 = DerivePublicAddress(pathEth32)
+     var pathXRP = "m/44'/144'/0'/0";
+     var addressXRP = DerivePublicAddress(pathXRP)
+	 var pathLTC = "m/44'/2'/0'/0";
+     var addressLTC = DerivePublicAddress(pathLTC)
+	 var pathZEN = "m/44'/121'/0'/0";
+     var addressZEN = DerivePublicAddress(pathZEN)
  
  
         var html = '';
          html = '<tr><td>' + word +
-         '&nbsp</td><td>&nbsp' + createAddressUrl(address44,'btc') +  '&nbsp</td><td>&nbsp' + createAddressUrl(address49,'btc') + '&nbsp</td><td>&nbsp' + createAddressUrl(address84,'btc')  + '&nbsp</td><td>&nbsp' + createAddressUrl(addressEth, 'eth') + '&nbsp</td></tr>';
+         '&nbsp</td><td>&nbsp' + createAddressUrl(address44,'btc') +  
+		 '&nbsp</td><td>&nbsp' + createAddressUrl(address49,'btc') + 
+		 '&nbsp</td><td>&nbsp' + createAddressUrl(address84,'btc') + 
+		 '&nbsp</td><td>&nbsp' + createAddressUrl(addressEth, 'eth') +  
+		 '&nbsp</td><td>&nbsp' + createAddressUrl(addressEth32,'eth') + 
+		 '&nbsp</td><td>&nbsp' + createAddressUrl(addressXRP,'nolink') + 
+		 '&nbsp</td><td>&nbsp' + createAddressUrl(addressLTC,'ltc') + 		
+		 '&nbsp</td><td>&nbsp' + createAddressUrl(addressZEN,'zen') + 		 
+		 '&nbsp</td></tr>';
  
  DOM.addressesRecovered.append(html);
  
@@ -331,8 +347,24 @@ function DerivePublicAddresses(phrase, word = "(no missing word)")
  
  function createAddressUrl(address, coinType)
  {
-    str = '<a href="https://www.blockchain.com/' + coinType + '/address/' + address + '">' + address + '</a>';
-    return str;
+	if(coinType == 'nolink') {
+		str = address;
+	}
+	
+	if(coinType == 'zen') {
+		str = '<a href="https://explorer.zensystem.io/address/' + address + '" target=”_blank">' + address + '</a>';
+		
+	}
+	
+	if(coinType == 'ltc') {
+		str = '<a href="https://live.blockcypher.com/ltc/address/' + address + '" target=”_blank">' + address + '</a>';
+	}
+		
+	if(coinType == 'btc' || coinType == 'eth') {
+		str = '<a href="https://www.blockchain.com/' + coinType + '/address/' + address + '" target=”_blank">' + address + '</a>';
+    }
+	
+	return str;
  }
  
  
@@ -344,6 +376,18 @@ function DerivePublicAddresses(phrase, word = "(no missing word)")
             var key = derive(path)
  
             var keyPair = key.keyPair;
+			
+			//Add more robust processing to support different coin types supportd by bitcoinjs
+			//only considering uncompresesd keys
+			
+			if (coin == 2) { //Litecoin
+			keyPair = new bitcoinjs.bitcoin.ECPair(keyPair.d, null, {network: bitcoinjs.bitcoin.networks.litecoin});
+			}
+			
+			if (coin == 121) { //Zencash
+			keyPair = new bitcoinjs.bitcoin.ECPair(keyPair.d, null, {network: bitcoinjs.bitcoin.networks.zencash});
+			}
+					
             // get address
             var address = keyPair.getAddress().toString();
 
@@ -359,9 +403,7 @@ function DerivePublicAddresses(phrase, word = "(no missing word)")
             return address = ethUtil.addHexPrefix(checksumAddress);
             }
  
-            // Segwit addresses are different
- 
- 
+            // BTC Segwit addresses are different
             if ((bip_ver == 141) || (bip_ver == 84))   {
             var keyhash = bitcoinjs.bitcoin.crypto.hash160(key.getPublicKeyBuffer());
             var scriptpubkey = bitcoinjs.bitcoin.script.witnessPubKeyHash.output.encode(keyhash);
@@ -374,27 +416,70 @@ function DerivePublicAddresses(phrase, word = "(no missing word)")
             var scriptpubkey = bitcoinjs.bitcoin.script.scriptHash.output.encode(addressbytes);
             address = bitcoinjs.bitcoin.address.fromOutputScript(scriptpubkey, network)
             }
+			
+			// Ripple is different
+            if (coin == 144)
+            {
+				address = convertRippleAdrr(address);
+            }
+			
  return address;
  }
 
+	//Super cut-down version of derive
     function derive(path)
      {
         var bip32ExtendedKey = calcBip32ExtendedKey(path);
-        var key = bip32ExtendedKey.derive(0); //not hardened
+				
+		//Return non-hardened key 0
+        var key = bip32ExtendedKey.derive(0); 
  
         return key;
      }
 
 
+	 //TODO REMOVE FROM IAN COLEMAN TOOL
+	 function calcForDerivationPath() {
+        clearDerivedKeys();
+        clearAddressesList();
+        showPending();
+        // Don't show segwit if it's selected but network doesn't support it
+        if (segwitSelected() && !networkHasSegwit()) {
+            showSegwitUnavailable();
+            hidePending();
+            return;
+        }
+        showSegwitAvailable();
+        // Get the derivation path
+        var derivationPath = getDerivationPath();
+        var errorText = findDerivationPathErrors(derivationPath);
+        if (errorText) {
+            showValidationError(errorText);
+            return;
+        }
+        bip32ExtendedKey = calcBip32ExtendedKey(derivationPath);
+        if (bip44TabSelected()) {
+            displayBip44Info();
+        }
+        else if (bip49TabSelected()) {
+            displayBip49Info();
+        }
+        else if (bip84TabSelected()) {
+            displayBip84Info();
+        }
+        displayBip32Info();
+    }
+	//TODO REMOVE FROM IAN COLEMAN TOOL
 
 
 
     function showPending() {
         DOM.feedback
-            .text("Calculating...")
+            .text("Calculating... This can take upto a minute with an i5 @ 3Ghz, so be patient :)")
             .show();
     }
 
+	//Original Function to find single closest word
     function findNearestWord(word) {
         var language = getLanguage();
         var words = WORDLISTS[language];
@@ -413,6 +498,47 @@ function DerivePublicAddresses(phrase, word = "(no missing word)")
         }
         return closestWord;
     }
+	
+	//Extend this function to find the next 3 nearest words
+	function findNextNearestWords(word) {
+        var language = getLanguage();
+        var words = WORDLISTS[language];
+        var minDistance = 99;
+		var closestWordMinus1 = '';
+		var closestWordMinus2 = '';
+	
+        var closestWord = words[0];
+        for (var i=0; i<words.length; i++) {
+            var comparedTo = words[i];
+            if (comparedTo.indexOf(word) == 0) {
+                return comparedTo;
+            }
+            var distance = Levenshtein.get(word, comparedTo);
+            if (distance < minDistance) {
+				closestWordMinus2 = closestWordMinus1;
+				closestWordMinus1 = closestWord;
+                closestWord = comparedTo;
+                minDistance = distance;
+            }
+        }
+        return closestWordMinus1 + ", " + closestWordMinus2;
+    }
+	
+	//Iterate through a the wordlist and show words that start and end with the same letter (Theory being that people may be more liekly to get the first/last letters right, and suggestions from "nearest" can be unhelpful)
+	function findWordsStartEndWithSameLetter(word) {
+		var language = getLanguage();
+        var words = WORDLISTS[language];
+		var closeWords = '';
+		for (var i=0; i<words.length; i++) {
+            var comparedTo = words[i];
+            if (comparedTo[0] == word[0]) {
+				if (comparedTo[comparedTo.length-1] == word[word.length-1]) {
+					closeWords = closeWords + comparedTo + ", "
+				}
+            }
+        }
+		return closeWords;
+	}
 
     function hidePending() {
         DOM.feedback

@@ -5,7 +5,8 @@ body {
     cursor: text;
 }
 .feedback-container {
-    position: fixed;
+    left:10px;
+	position: fixed;
     top: 0;
     width: 100%;
     text-align: center;
