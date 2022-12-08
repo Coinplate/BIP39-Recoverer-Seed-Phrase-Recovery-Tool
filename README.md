@@ -1,7 +1,5 @@
 # BIP39 Recoverer: seed phrase recovery tool
 
-A fork of tool for recovering BIP39 seed phrases.
-
 Getting any of the following errors...
 
 Trezor: Recovery failed. Error details: Mnemonic is not valid
@@ -10,24 +8,23 @@ Trezor: Recovery failed. Error details: Mnemonic is not valid
 
 Any of the above errors can really ruin your day, especially if you have lost/damanged/reset your hardware wallet. The aim of this tool is to be a 1st (and hopefully only) step required to recover your 24 word seed. It is quick and easy to understand and will work on any system with nothing more than a browser. If you don't have success with this tool, then you can try BTCRecover, (https://github.com/gurnec/btcrecover) though it hasn't been updated in some time.
 
-The tool is based on the bip39 project by Ian Coleman https://github.com/iancoleman/bip39 and is a minimally modifed version of the Seed Savior Tool found here: https://github.com/KZen-networks/mnemonic-recovery It's possible the changes I added will be merged into the main project, but I have forked it in the mean time while I add some interface tweaks to make it a bit more n00b friendly, useful for more coins as-is and with examples of extra coins that are easy to extend as required. I can also look at adding the 1st public address for other coins to the UI as long as they are already included in the bitcoinjs library, though you will notice that all the extra address generation makes this tool take far longer to test addresses than the original seed-savior. (Though still quick enough to be useful in my opinion)
+
 
 For more context and background of the original tool, please see the blog post https://medium.com/kzen-networks/the-wallet-seed-saviors-2cad8ae542f3 
 
-<b><i>If this was helpful, feel free to send me a tip:</b></i>
-<br>BTC: 37hiiSB1Poj6Shs8WawPS2HjT2jzHkFSQi
-<br>LTC: MRWnUcsyofisVp5GvX7nxMog5caneycKZ6
-<br>ETH: 0x14b2E26021d0Ce8E2cE6a2Eb6E2690714bB18E17
-<br>VTC: vtc1qxauv20r2ux2vttrjmm9eylshl508q04uju936n
-<br>ZEN: znUihTHfwm5UJS1ywo911mdNEzd9WY9vBP7
+**If you found this tool useful, you can tip us or buy a metal crypto wallet from [our store](https://getcoinplate.com/).**
 
-## Online Version
+- BTC: bc1q4tq9mz6dz78qgxvrlfvpg2yp0hxn4wmtfq6rmm
+- ETH: 0x77fa426AB714995a34D20A4d61fDcE2AB829c54F
+- LTC: ltc1qk5s74tx445hzjgxm5xtyp2wth7f0q969leefyx
+- XLM: GDXZ7YE2QZN2FT4CDY2QREQ6ZV3A76CJQIYZZQ4CTX6XU7PBO3JOKTKS
+- ADA: addr1q88l806507plwz0gl3e44mw78fkjn4jekk4st8tk2yaca7u09dknhhq52pqmg70v2h45g3spnr0jxd9yz4w9a5v2j0kq0sg74f
 
-https://3rditeration.github.io/mnemonic-recovery/src/index.html
+**See the tool in action - online version -  [BIP39 Seed Phrase Generator](https://getcoinplate.com/bip39-seed-phrase-mnemonics-generator-offline-online-tool/)**
 
 ## Standalone offline version
 
-Download `mnemonic-standalone.html`
+Download `BIP39_Recoverer_standalone_offline.html`
 
 Open the file in a browser by double clicking it.
 
@@ -39,13 +36,10 @@ Enter your seed phrase into the 'BIP39 Phrase' field. If a word is missing or un
 
 The tool will suggest all relevant options for the missing word and the derived public addresses for Bitcoin anmd Ethereum. To find out if one of the suggested addresses is actually the right one, you can click on the suggested address  tocheck the address' transaction history on a block explorer.
 
-## Demo
 
-In this demo we enter "phrase brief ceiling dream rack install fault insane panic surround glory ? library brother hill sauce access child notice picnic dinner panda purity poem"
+## Check out our other tools:
+**[BIP39 Seed Phrase Generator - online/offline](https://getcoinplate.com/bip39-seed-phrase-mnemonics-generator-offline-online-tool/)**
 
-The tool suggests several options for the missing word and the relevant one will be "asset". We can verify that by clicking on the link of the dervied Ethereum address ("0x2dfF20b40504f99c6314ac30e8DF5c02dd8058e7" listed in the "BIP44 ETH Address" column) and checking the address has transaction history.
-
-![Demo](/src/img/seed%20demo%20annotated.gif "Demo")
 
 
 ## Making changes
@@ -60,7 +54,16 @@ please do not commit changes to `mnemonic.html`
 
 
 
-# License
 
-This Seed Svior tool is released under the terms of the MIT license. See LICENSE for
-more information or see https://opensource.org/licenses/MIT.
+<details><summary> License (click to expand) </summary
+<p>The MIT License (MIT) Copyright (c) 2022 Coinplate</p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+
+</details>
+
+The tool is based on the bip39 project by Ian Coleman https://github.com/iancoleman/bip39 and is a minimally modifed version of the Seed Savior Tool found here: https://github.com/KZen-networks/mnemonic-recovery. Changes involves mostly making the tool responsive to display size and small improvements in UX.
