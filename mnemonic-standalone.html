@@ -6768,7 +6768,8 @@ button.close {
     cursor: text;
 }
 .feedback-container {
-    position: fixed;
+    left:10px;
+	position: fixed;
     top: 0;
     width: 100%;
     text-align: center;
@@ -6878,7 +6879,7 @@ button.close {
         <div class="container">
 
             <h1 class="text-center">Seed Savior: Mnemonic Phrase Recovery Tool</h1>
-            <p class="version">v0.1</p>
+            <p class="version">v0.1-iteration</p>
             <hr>
             <div class="row">
                 <div class="col-md-12">
@@ -6887,7 +6888,14 @@ button.close {
                         <div class="form-group">
                             <div class="col-sm-2"></div>
                             <div class="col-sm-10">
-                                <p> This tool is meant to help users with reacovring a slightly incorrect Bitcoin and Ethereum mnemonic phrase (AKA backup or seed). You can enter an existing BIP39 mnemonic and get derived adresses in various formats. If a word is wrong, the tool will try to suggest the closest option. If a word is missing or unknown, please type "?" instead and the tool will find all relevant options.
+                                <p> This tool is meant to help users with recovring a slightly incorrect Bitcoin and Ethereum mnemonic phrase (AKA backup or seed). You can enter an existing BIP39 mnemonic and get derived adresses in various formats. If a word is wrong, the tool will try to suggest the closest option. If a word is missing or unknown, please type "?" instead and the tool will find all relevant options.
+								<br>
+								<br><b><i>If this was helpful, feel free to send me a tip:</b></i>
+								<br>BTC: 37hiiSB1Poj6Shs8WawPS2HjT2jzHkFSQi
+								<br>LTC: MRWnUcsyofisVp5GvX7nxMog5caneycKZ6
+								<br>ETH: 0x14b2E26021d0Ce8E2cE6a2Eb6E2690714bB18E17
+								<br>VTC: vtc1qxauv20r2ux2vttrjmm9eylshl508q04uju936n
+								<br>ZEN: znUihTHfwm5UJS1ywo911mdNEzd9WY9vBP7
                                 </p>
                                 
                                 
@@ -6899,8 +6907,11 @@ button.close {
                                 <div class="form-inline">
                                     <div class="input-group-inline">
                                          <span><p><b>Enter your mnemonic</b></p>
-                                             <b>Usage example (see also the demo section below)</b>: enter "<i>phrase brief ceiling dream rack install fault insane panic surround glory <b>?</b> library brother hill sauce access child notice picnic dinner panda purity poem</i>"
+                                             <b>example (see also the demo section below)</b>: enter a 12 or 24 words seed phrase: "<i>phrase brief ceiling dream rack install fault insane panic surround glory <b>?</b> library brother hill sauce access child notice picnic dinner panda purity poem</i>"
+											 <br>
+											 <br><i><b>Note: 12 word seed phrases will take significantly longer to process due to the large number of possibilities for a unknown word.</b></i><br>
                                              <p>
+											 
                                             
                                              The tool will suggest several options for the missing word and the relevant one will be "asset", with the following Ethereum address, listed in the "BIP44 ETH Address" column "0x2dfF20b40504f99c6314ac30e8DF5c02dd8058e7"
                                              </p>
@@ -6930,22 +6941,45 @@ button.close {
                                 </th>
                                 <th>
                                     <div class="input-group">
-                                        <span>BIP44 BTC Address</span>&nbsp;&nbsp;
+                                        <span>BIP44 BTC Address <br><i>(m/44'/0'/0'/0 Legacy Bitcoin Address)</i></span>&nbsp;&nbsp;
                                     </div>
                                 </th>
                                 <th>
                                     <div class="input-group">
-                                        <span>BIP49 BTC Address</span>&nbsp;&nbsp;
+                                        <span>BIP49 BTC Address <br><i>(m/49'/0'/0'/0 Segwit Bitcoin Address)</i></span>&nbsp;&nbsp;
                                     </div>
                                 </th>
                                 <th>
                                     <div class="input-group">
-                                        <span>BIP84 BTC Address</span>&nbsp;&nbsp;
+                                        <span>BIP84 BTC Address <br><i>(m/84'/0'/0'/0 Bech32 Bitcoin Address)</i></span>&nbsp;&nbsp;
                                     </div>
                                 </th>
                                 <th>
                                     <div class="input-group">
-                                        <span>BIP44 ETH Address</span>&nbsp;&nbsp;
+                                        <span>BIP44 ETH Address <br><i>(m/44'/60'/0'/0 Ledger Live, Trezor, Jaxx, etc)</i></span>&nbsp;&nbsp;
+                                    </div>
+                                </th>
+								<th>
+                                    <div class="input-group">
+                                        <span>BIP32 ETH Address <br><i>(m/44'/60'/0' Legacy Ledger, Coinomi)</i></span>&nbsp;&nbsp;
+                                    </div>
+                                </th>
+								
+								<th>
+                                    <div class="input-group">
+                                        <span>XRP Address <br><i>(m/44'/144'/0'/0)</i></span>&nbsp;&nbsp;
+                                    </div>
+                                </th>
+								
+								<th>
+                                    <div class="input-group">
+                                        <span>LTC Address <br><i>(m/44'/2'/0'/0)</i></span>&nbsp;&nbsp;
+                                    </div>
+                                </th>
+								
+								<th>
+                                    <div class="input-group">
+                                        <span>ZEN Address <br><i>(m/44'/121'/0'/0)</i></span>&nbsp;&nbsp;
                                     </div>
                                 </th>
                                 
@@ -6963,7 +6997,7 @@ button.close {
                 <div class="col-md-12">
                     <h2>License</h2>
                     <p>
-                    <span>Please refer to <a href="https://github.com/KZen-networks/mnemonic-recovery/blob/master/LICENSE" target="_blank">the software license</a> for more detail.
+                    <span>Please refer to <a href="https://github.com/3rdIteration/mnemonic-recovery/blob/master/LICENSE" target="_blank">the software license</a> for more detail.
                     </span>
                     </p>
                     <p>The software is provided "as is", without warranty of any kind, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose and noninfringement. In no event shall the authors or copyright holders be liable for any claim, damages or other liability, whether in an action of contract, tort or otherwise, arising from, out of or in connection with the software or the use or other dealings in the software.</p>
@@ -6974,7 +7008,10 @@ button.close {
             <div class="row">
                 <div class="col-md-12">
                     <h2>Demo</h2>
+					I put together an example of how to use this too, as well as how to use it securely within TAILS that you can check out on YouTube.
+					<iframe width="560" height="315" src="https://www.youtube.com/embed/Fp3pZsezlfU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     <p>
+					Alternatively, the demo included in the original Seed Savior should give a pretty good impression of how this tool works.<br>
                     In this demo we enter "<i>phrase brief ceiling dream rack install fault insane panic surround glory <b>?</b> library brother hill sauce access child notice picnic dinner panda purity poem</i>"
                     </p>
                     <p>
@@ -7009,7 +7046,7 @@ button.close {
                     <p>
                     <span>Alternatively, download the file from the repository</span>
                     -
-                    <a href="https://github.com/KZen-networks/mnemonic-recovery/">https://github.com/KZen-networks/mnemonic-recovery/</a>
+                    <a href="https://github.com/3rdIteration/mnemonic-recovery/">https://github.com/3rdIteration/mnemonic-recovery/</a>
                     </p>
 
                 </div>
@@ -7025,19 +7062,29 @@ button.close {
                     <p>
                         <span>Get the source code from the repository</span>
                         -
-                        <a href="https://github.com/KZen-networks/mnemonic-recovery" target="_blank">
-                            https://github.com/KZen-networks/mnemonic-recovery
+                        <a href="https://github.com/3rdIteration/mnemonic-recovery" target="_blank">
+                            https://github.com/3rdIteration/mnemonic-recovery
                         </a>
                     </p>
                     
                     <p>
-                    <span>The project is based on Ian Coleman's Bip39 project. Get Bip39's source code from the repository</span>
-                    -
-                    <a href="https://github.com/iancoleman/bip39" target="_blank">
-                        https://github.com/iancoleman/bip39
-                    </a>
-                    </p>
-
+						<span>The project is based on Ian Coleman's Bip39 project. Get Bip39's source code from the repository</span>
+						-
+						<a href="https://github.com/iancoleman/bip39" target="_blank">
+							https://github.com/iancoleman/bip39
+						</a>
+					</p>
+					
+					<p>
+						<span>The tool is a minimally modifed version of the Seed Savior Tool found here:</span>
+						-
+						<a href="https://kzen-networks.github.io/mnemonic-recovery/" target="_blank">
+							https://kzen-networks.github.io/mnemonic-recovery/
+						</a>
+						<br>
+						<span><i>It's possible the changes I added will be merged into the main project, but I have forked it in the mean time while I add some interface tweaks to make it a bit more n00b friendly.</i></span>
+					</p>
+		  
                     <h3>Libraries</h3>
 
                     <p>
@@ -106095,7 +106142,9 @@ window.Entropy = new (function() {
             if (WORDLISTS[language].indexOf(word) == -1) {
                 console.log("Finding closest match to " + word);
                 var nearestWord = findNearestWord(word);
-                return word + " not in wordlist, did you mean " + nearestWord + "?";
+				var nextNearestWords = findNextNearestWords(word);
+				var nearestWords = findWordsStartEndWithSameLetter(word);
+                return word + " not in wordlist, did you mean " + nearestWord + "?" + " Maybe: " + nextNearestWords + "? How about: " +  nearestWords + "If none of them work, just replace it with '?'";
             }
         }
  
@@ -106172,13 +106221,27 @@ function DerivePublicAddresses(phrase, word = "(no missing word)")
      var address84 = DerivePublicAddress(path84)
      var pathEth = "m/44'/60'/0'/0";
      var addressEth = DerivePublicAddress(pathEth)
- 
- 
+     var pathEth32 = "m/44'/60'/0'";
+     var addressEth32 = DerivePublicAddress(pathEth32)
+     var pathXRP = "m/44'/144'/0'/0";
+     var addressXRP = DerivePublicAddress(pathXRP)
+	 var pathLTC = "m/44'/2'/0'/0";
+     var addressLTC = DerivePublicAddress(pathLTC)
+	 var pathZEN = "m/44'/121'/0'/0";
+     var addressZEN = DerivePublicAddress(pathZEN)
  
  
         var html = '';
          html = '<tr><td>' + word +
-         '&nbsp</td><td>&nbsp' + createAddressUrl(address44,'btc') +  '&nbsp</td><td>&nbsp' + createAddressUrl(address49,'btc') + '&nbsp</td><td>&nbsp' + createAddressUrl(address84,'btc')  + '&nbsp</td><td>&nbsp' + createAddressUrl(addressEth, 'eth') + '&nbsp</td></tr>';
+         '&nbsp</td><td>&nbsp' + createAddressUrl(address44,'btc') +  
+		 '&nbsp</td><td>&nbsp' + createAddressUrl(address49,'btc') + 
+		 '&nbsp</td><td>&nbsp' + createAddressUrl(address84,'btc') + 
+		 '&nbsp</td><td>&nbsp' + createAddressUrl(addressEth, 'eth') +  
+		 '&nbsp</td><td>&nbsp' + createAddressUrl(addressEth32,'eth') + 
+		 '&nbsp</td><td>&nbsp' + createAddressUrl(addressXRP,'nolink') + 
+		 '&nbsp</td><td>&nbsp' + createAddressUrl(addressLTC,'ltc') + 		
+		 '&nbsp</td><td>&nbsp' + createAddressUrl(addressZEN,'zen') + 		 
+		 '&nbsp</td></tr>';
  
  DOM.addressesRecovered.append(html);
  
@@ -106187,8 +106250,24 @@ function DerivePublicAddresses(phrase, word = "(no missing word)")
  
  function createAddressUrl(address, coinType)
  {
-    str = '<a href="https://www.blockchain.com/' + coinType + '/address/' + address + '">' + address + '</a>';
-    return str;
+	if(coinType == 'nolink') {
+		str = address;
+	}
+	
+	if(coinType == 'zen') {
+		str = '<a href="https://explorer.zensystem.io/address/' + address + '" target=”_blank">' + address + '</a>';
+		
+	}
+	
+	if(coinType == 'ltc') {
+		str = '<a href="https://live.blockcypher.com/ltc/address/' + address + '" target=”_blank">' + address + '</a>';
+	}
+		
+	if(coinType == 'btc' || coinType == 'eth') {
+		str = '<a href="https://www.blockchain.com/' + coinType + '/address/' + address + '" target=”_blank">' + address + '</a>';
+    }
+	
+	return str;
  }
  
  
@@ -106200,6 +106279,18 @@ function DerivePublicAddresses(phrase, word = "(no missing word)")
             var key = derive(path)
  
             var keyPair = key.keyPair;
+			
+			//Add more robust processing to support different coin types supportd by bitcoinjs
+			//only considering uncompresesd keys
+			
+			if (coin == 2) { //Litecoin
+			keyPair = new bitcoinjs.bitcoin.ECPair(keyPair.d, null, {network: bitcoinjs.bitcoin.networks.litecoin});
+			}
+			
+			if (coin == 121) { //Zencash
+			keyPair = new bitcoinjs.bitcoin.ECPair(keyPair.d, null, {network: bitcoinjs.bitcoin.networks.zencash});
+			}
+					
             // get address
             var address = keyPair.getAddress().toString();
 
@@ -106215,9 +106306,7 @@ function DerivePublicAddresses(phrase, word = "(no missing word)")
             return address = ethUtil.addHexPrefix(checksumAddress);
             }
  
-            // Segwit addresses are different
- 
- 
+            // BTC Segwit addresses are different
             if ((bip_ver == 141) || (bip_ver == 84))   {
             var keyhash = bitcoinjs.bitcoin.crypto.hash160(key.getPublicKeyBuffer());
             var scriptpubkey = bitcoinjs.bitcoin.script.witnessPubKeyHash.output.encode(keyhash);
@@ -106230,27 +106319,70 @@ function DerivePublicAddresses(phrase, word = "(no missing word)")
             var scriptpubkey = bitcoinjs.bitcoin.script.scriptHash.output.encode(addressbytes);
             address = bitcoinjs.bitcoin.address.fromOutputScript(scriptpubkey, network)
             }
+			
+			// Ripple is different
+            if (coin == 144)
+            {
+				address = convertRippleAdrr(address);
+            }
+			
  return address;
  }
 
+	//Super cut-down version of derive
     function derive(path)
      {
         var bip32ExtendedKey = calcBip32ExtendedKey(path);
-        var key = bip32ExtendedKey.derive(0); //not hardened
+				
+		//Return non-hardened key 0
+        var key = bip32ExtendedKey.derive(0); 
  
         return key;
      }
 
 
+	 //TODO REMOVE FROM IAN COLEMAN TOOL
+	 function calcForDerivationPath() {
+        clearDerivedKeys();
+        clearAddressesList();
+        showPending();
+        // Don't show segwit if it's selected but network doesn't support it
+        if (segwitSelected() && !networkHasSegwit()) {
+            showSegwitUnavailable();
+            hidePending();
+            return;
+        }
+        showSegwitAvailable();
+        // Get the derivation path
+        var derivationPath = getDerivationPath();
+        var errorText = findDerivationPathErrors(derivationPath);
+        if (errorText) {
+            showValidationError(errorText);
+            return;
+        }
+        bip32ExtendedKey = calcBip32ExtendedKey(derivationPath);
+        if (bip44TabSelected()) {
+            displayBip44Info();
+        }
+        else if (bip49TabSelected()) {
+            displayBip49Info();
+        }
+        else if (bip84TabSelected()) {
+            displayBip84Info();
+        }
+        displayBip32Info();
+    }
+	//TODO REMOVE FROM IAN COLEMAN TOOL
 
 
 
     function showPending() {
         DOM.feedback
-            .text("Calculating...")
+            .text("Calculating... This can take upto a minute with an i5 @ 3Ghz, so be patient :)")
             .show();
     }
 
+	//Original Function to find single closest word
     function findNearestWord(word) {
         var language = getLanguage();
         var words = WORDLISTS[language];
@@ -106269,6 +106401,47 @@ function DerivePublicAddresses(phrase, word = "(no missing word)")
         }
         return closestWord;
     }
+	
+	//Extend this function to find the next 3 nearest words
+	function findNextNearestWords(word) {
+        var language = getLanguage();
+        var words = WORDLISTS[language];
+        var minDistance = 99;
+		var closestWordMinus1 = '';
+		var closestWordMinus2 = '';
+	
+        var closestWord = words[0];
+        for (var i=0; i<words.length; i++) {
+            var comparedTo = words[i];
+            if (comparedTo.indexOf(word) == 0) {
+                return comparedTo;
+            }
+            var distance = Levenshtein.get(word, comparedTo);
+            if (distance < minDistance) {
+				closestWordMinus2 = closestWordMinus1;
+				closestWordMinus1 = closestWord;
+                closestWord = comparedTo;
+                minDistance = distance;
+            }
+        }
+        return closestWordMinus1 + ", " + closestWordMinus2;
+    }
+	
+	//Iterate through a the wordlist and show words that start and end with the same letter (Theory being that people may be more liekly to get the first/last letters right, and suggestions from "nearest" can be unhelpful)
+	function findWordsStartEndWithSameLetter(word) {
+		var language = getLanguage();
+        var words = WORDLISTS[language];
+		var closeWords = '';
+		for (var i=0; i<words.length; i++) {
+            var comparedTo = words[i];
+            if (comparedTo[0] == word[0]) {
+				if (comparedTo[comparedTo.length-1] == word[word.length-1]) {
+					closeWords = closeWords + comparedTo + ", "
+				}
+            }
+        }
+		return closeWords;
+	}
 
     function hidePending() {
         DOM.feedback
