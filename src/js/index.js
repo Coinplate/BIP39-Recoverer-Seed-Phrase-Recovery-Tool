@@ -475,7 +475,7 @@ function DerivePublicAddresses(phrase, word = "(no missing word)")
 
     function showPending() {
         DOM.feedback
-            .text("Calculating... This can take upto a minute with an i5 @ 3Ghz, so be patient :)")
+            .text("Calculating... This can take up to 1-2 minutes, so be patient :)")
             .show();
     }
 

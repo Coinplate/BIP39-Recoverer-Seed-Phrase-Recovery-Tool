@@ -2,75 +2,80 @@
 <html>
     <head lang="en">
         <meta charset="utf-8" />
-        <title>Seed Savior: Mnemonic Phrase Recovery Tool</title>
+        <title>BIP39 Recoverer: Seed phrase recovery tool</title>
         <link rel="stylesheet" href="css/bootstrap-3.3.7.css">
-        <link rel="stylesheet" href="css/app.css">
+        <link rel="stylesheet" href="css/app2.css">
         <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-        <meta content="Seed Savior: Mnemonic Phrase Recovery Tool" name="description" />
-        <meta content="Tal Be'ery (KZen Networks)" name="author" />
+        <meta content="BIP39 Recoverer: Seed phrase recovery tool" name="description" />
+        <meta content="Coinplate" name="author" />
     </head>
     <body>
-        <div class="container">
-
-            <h1 class="text-center">Seed Savior: Mnemonic Phrase Recovery Tool</h1>
-            <p class="version">v0.1-iteration</p>
-            <hr>
-            <div class="row">
-                <div class="col-md-12">
-                    <!--h2>Mnemonic</h2-->
-                    <form class="form-horizontal" role="form">
+      <script>
+function ToggleVisibilityTip(divClass)
+{
+    var els = document.getElementsByClassName("hide_tip");
+    for(var i = 0; i < els.length; i++)
+    {
+        els[i].style.display = els[i].style.display == "none" ? "block" : "none";
+    }
+}
+</script>
+        <div class="container" style="padding: 15px; border-radius: 25px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);"
+        }>
+          <div style="width:200px; margin:0 auto;">
+           <img width="200" src="data:image/png;base64,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YWI2LTRlNzItOTM1Mi0zZDBiMjIwODUxYWUiCiAgIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6ZDdhZDdlOGQtNjI2NC00NTIwLWE5OTQtZmJlOGIxOTRiYWM3IgogICB4bXBNTTpPcmlnaW5hbERvY3VtZW50SUQ9InhtcC5kaWQ6MmMzZTZiMGYtMjQzMC00YjA1LThmMDgtYmY5MzQwYWJjZWU0IgogICBkYzpGb3JtYXQ9ImltYWdlL3BuZyIKICAgR0lNUDpBUEk9IjIuMCIKICAgR0lNUDpQbGF0Zm9ybT0iV2luZG93cyIKICAgR0lNUDpUaW1lU3RhbXA9IjE2NTA1NTg2NDQ5NjY5MDgiCiAgIEdJTVA6VmVyc2lvbj0iMi4xMC4yOCIKICAgdGlmZjpPcmllbnRhdGlvbj0iMSIKICAgeG1wOkNyZWF0b3JUb29sPSJHSU1QIDIuMTAiPgogICA8eG1wTU06SGlzdG9yeT4KICAgIDxyZGY6U2VxPgogICAgIDxyZGY6bGkKICAgICAgc3RFdnQ6YWN0aW9uPSJzYXZlZCIKICAgICAgc3RFdnQ6Y2hhbmdlZD0iLyIKICAgICAgc3RFdnQ6aW5zdGFuY2VJRD0ieG1wLmlpZDo4ZDJlYzJjMC1lNDIzLTQwMmItYjljOS1mM2M1MzM5OTRmM2EiCiAgICAgIHN0RXZ0OnNvZnR3YXJlQWdlbnQ9IkdpbXAgMi4xMCAoV2luZG93cykiCiAgICAgIHN0RXZ0OndoZW49IjIwMjItMDQtMjFUMTg6MzA6NDQiLz4KICAgIDwvcmRmOlNlcT4KICAgPC94bXBNTTpIaXN0b3J5PgogIDwvcmRmOkRlc2NyaXB0aW9uPgogPC9yZGY6UkRGPgo8L3g6eG1wbWV0YT4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgIAo8P3hwYWNrZXQgZW5kPSJ3Ij8+7tvzDAAAAAZiS0dEALAAswCzfPQRFAAAAAlwSFlzAABdoQAAXaEBqV9s0wAAAAd0SU1FB+YEFRAeLGQxox4AACAASURBVHja7d15dBRV/j7+p5cknZ0sBEKIQFhFIpIB2RFBCZvgAhoGgeAoCCoCLjAfhFFAJzoyCoKB0VF2IouyQ9jViEQWNewkhGwkgexLp/e+3z/mBz9cgKTT1V3deV7n9DkeD6m+9a6qW09V37qlEEIIEBERERGRW1CyBEREREREDPhERERERMSAT0REREREDPhERERERMSAT0RERETEgE9ERERERAz4RERERETEgE9ERERERAz4RERERETEgE9ERERExIBPREREREQM+ERERERExIBPREREREQM+ERERERExIBPRERERMSAT0REREREDPhERERERMSAT0REREREDPhERERERAz4RERERETEgE9ERERERAz4RERERETEgE9ERERERAz4REREREQM+ERERERExIBPREREREQM+ERERERExIBPREREREQM+EREREREDPhERERERMSAT0REREREDPhERERERMSAT0RERETEgE9ERERERAz4RERERETEgE9ERERERAz4RERERETEgE9ERERExIBPREREREQM+ERERERExIBPREREREQM+EREREREdAs1S0DUcJnNZhgMBgghoFarodFoWBQiIiIGfCJyJUIIpKSk4MSJEyguLsb169dhMpkQGBiIpk2b4p577sGwYcPQqFEjFouIiIgBn4jkqqqqCidOnMCsWbNw/Pjxu/77jz76CI8//jhatmzJ4pHLKikpQUlJiUO+q3Xr1lCpVCw6ETmdQgghWAYi91ZQUIAZM2Zg8+bNsFgstf67v/zlL5g/fz4GDx4MpZKP7JDr2b59O2bMmAGpT3UlJSXIyclBYGAgi05ETsc7+ERu7vTp03jqqaeQnp5e5789efIkhg0bhv/85z+Ij4+Hh4cHC0ouxWKxICsrC1arVfLv4v0yIpIL3pIjcmNZWVkYOnSoTeH+VpMmTcJXX33FAENERMSAT0TOUlZWhtdffx15eXl2Wd6UKVNw8uRJFpaIiIgBn4ic4dChQ9iyZYvdllddXY1FixbB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" alt="Red dot" />
+                </div>
+                <div style = "text-align: center">
+                  <span>getcoinplate.com</span>
+                </div>
+              <h2 class="text-center"style=";font-weight: bold"">BIP39 Recoverer</h3>
+                <div style = "text-align: center">
+              <span>OFFLINE v1.0.1</span>
+              <p class="has-text-align-center"><strong>If you found this tool useful, you can <a onClick="ToggleVisibilityTip()">  tip us </a> or buy a metal crypto wallet from <a href="https://getcoinplate.com/" target="_blank" rel="noreferrer noopener">our store</a>.</strong></p>
+            </div>
+          <div style = "display: none" class="hide_tip"> <p>BTC: bc1q4tq9mz6dz78qgxvrlfvpg2yp0hxn4wmtfq6rmm </p>
+            <p> ETH: 0x77fa426AB714995a34D20A4d61fDcE2AB829c54F </p>
+            <p> LTC: ltc1qk5s74tx445hzjgxm5xtyp2wth7f0q969leefyx </p>
+            <p> XLM: GDXZ7YE2QZN2FT4CDY2QREQ6ZV3A76CJQIYZZQ4CTX6XU7PBO3JOKTKS</p>
+            <p> ADA: addr1q88l806507plwz0gl3e44mw78fkjn4jekk4st8tk2yaca7u09dknhhq52pqmg70v2h45g3spnr0jxd9yz4w9a5v2j0kq0sg74f </p>
+            </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-12">
+            <!--h2>Mnemonic</h2-->
+            <form class="form-horizontal" role="form">
+                <div class="form-group">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-10">
+                    </div>
+                </div>
+                <div class="form-group generate-container">
+                    <label class="col-sm-2 control-label"></label>
+                    <div class="col-sm-10">
+                        <div class="form-inline">
+                            <div class="input-group-inline">
+                    </div>
+                </div>
+                </div>
+     </div>
                         <div class="form-group">
-                            <div class="col-sm-2"></div>
-                            <div class="col-sm-10">
-                                <p> This tool is meant to help users with recovring a slightly incorrect Bitcoin and Ethereum mnemonic phrase (AKA backup or seed). You can enter an existing BIP39 mnemonic and get derived adresses in various formats. If a word is wrong, the tool will try to suggest the closest option. If a word is missing or unknown, please type "?" instead and the tool will find all relevant options.
-								<br>
-								<br><b><i>If this was helpful, feel free to send me a tip:</b></i>
-								<br>BTC: 37hiiSB1Poj6Shs8WawPS2HjT2jzHkFSQi
-								<br>LTC: MRWnUcsyofisVp5GvX7nxMog5caneycKZ6
-								<br>ETH: 0x14b2E26021d0Ce8E2cE6a2Eb6E2690714bB18E17
-								<br>VTC: vtc1qxauv20r2ux2vttrjmm9eylshl508q04uju936n
-								<br>ZEN: znUihTHfwm5UJS1ywo911mdNEzd9WY9vBP7
-                                </p>
-                                
-                                
-                            </div>
-                        </div>
-                        <div class="form-group generate-container">
-                            <label class="col-sm-2 control-label"></label>
-                            <div class="col-sm-10">
-                                <div class="form-inline">
-                                    <div class="input-group-inline">
-                                         <span><p><b>Enter your mnemonic</b></p>
-                                             <b>example (see also the demo section below)</b>: enter a 12 or 24 words seed phrase: "<i>phrase brief ceiling dream rack install fault insane panic surround glory <b>?</b> library brother hill sauce access child notice picnic dinner panda purity poem</i>"
-											 <br>
-											 <br><i><b>Note: 12 word seed phrases will take significantly longer to process due to the large number of possibilities for a unknown word.</b></i><br>
-                                             <p>
-											 
-                                            
-                                             The tool will suggest several options for the missing word and the relevant one will be "asset", with the following Ethereum address, listed in the "BIP44 ETH Address" column "0x2dfF20b40504f99c6314ac30e8DF5c02dd8058e7"
-                                             </p>
-                                         </span>
-                                    
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="phrase" class="col-sm-2 control-label">BIP39 Mnemonic</label>
+                            <label for="phrase" class="col-sm-2 control-label"><h4><b>Enter your BIP39 seed phrase</b></h4></label>
                             <div class="col-sm-10">
                                 <textarea id="phrase" placeholder="phrase brief ceiling dream rack install fault insane panic surround glory ? library brother hill sauce access child notice picnic dinner panda purity poem" class="phrase private-data form-control"></textarea>
                             </div>
                         </div>
-                        
-                        
+<style>
+ .table-striped {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+</style>
                         <table class="table table-striped" >
                             <thead>
                                 <th>
                                     <div class="input-group">
                                         <span>Recovered Word</span>&nbsp;&nbsp;
-                                        
                                     </div>
                                 </th>
                                 <th>
@@ -98,169 +103,95 @@
                                         <span>BIP32 ETH Address <br><i>(m/44'/60'/0' Legacy Ledger, Coinomi)</i></span>&nbsp;&nbsp;
                                     </div>
                                 </th>
-								
 								<th>
                                     <div class="input-group">
                                         <span>XRP Address <br><i>(m/44'/144'/0'/0)</i></span>&nbsp;&nbsp;
                                     </div>
                                 </th>
-								
 								<th>
                                     <div class="input-group">
                                         <span>LTC Address <br><i>(m/44'/2'/0'/0)</i></span>&nbsp;&nbsp;
                                     </div>
                                 </th>
-								
 								<th>
                                     <div class="input-group">
                                         <span>ZEN Address <br><i>(m/44'/121'/0'/0)</i></span>&nbsp;&nbsp;
                                     </div>
                                 </th>
-                                
                             </thead>
                             <tbody class="addresses-recovery monospace">
-                           
                             </tbody>
                         </table>
-                        
                         </div>
-                
-        
-                
+</div>
+</div>
+<div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h2>License</h2>
-                    <p>
-                    <span>Please refer to <a href="https://github.com/3rdIteration/mnemonic-recovery/blob/master/LICENSE" target="_blank">the software license</a> for more detail.
+                    <h3><b>How to use</b></h3>
+                    <b>Enter your 12 or 24 words BIP39 seed phrase. Use the tool OFFLINE for recovery.</b>
+                    <ul>
+                     <li>If one of your words is incorrect, the tool will try to suggest similar, correct words. Try them out.</li>
+                     <li>If you are unsure about one of the words, replace it with ? . The tool will calculate all possible words that work. Check them in your wallet or check if any of the calculated addressess is yours.</li>
+                     <li>To calculate the checksum (last word - either 12th or 24th), put ? instead of last word. The tool will calculate all correct checksum words - 8 potenial words for 24th and 128 words for 12th. </li>
+                   </ul>
+                 <br>
+                    <b>example:</b> enter a 12 or 24 words seed phrase: "<i>phrase brief ceiling dream rack install fault insane panic surround glory <b>?</b> library brother hill sauce access child notice picnic dinner panda purity poem</i>"
+                                              <br>
+  <br><i><b>Note: 12 word seed phrases will take significantly longer to process due to the large number of possibilities for a unknown word.</b></i><br>
                     </span>
-                    </p>
-                    <p>The software is provided "as is", without warranty of any kind, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose and noninfringement. In no event shall the authors or copyright holders be liable for any claim, damages or other liability, whether in an action of contract, tort or otherwise, arising from, out of or in connection with the software or the use or other dealings in the software.</p>
-                </div>
-            </div>
-            <hr>
-            
+                   </p>
+               </div>
+           </div>
+       </div>
+   </div>
+   <hr>
+<div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h2>Demo</h2>
-					I put together an example of how to use this too, as well as how to use it securely within TAILS that you can check out on YouTube.
-					<iframe width="560" height="315" src="https://www.youtube.com/embed/Fp3pZsezlfU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <h3>Security notes & offline use</h3>
+                    <p>You can use this tool 100% offline. For security it is preferable to use offline fresh system install or <a href="https://ubuntu.com/tutorials/create-a-usb-stick-on-ubuntu#1-overview" target="_blank" rel="noreferrer noopener">system on live usb</a>. Download standalone offline file below and open it in a browser.</p>
                     <p>
-					Alternatively, the demo included in the original Seed Savior should give a pretty good impression of how this tool works.<br>
-                    In this demo we enter "<i>phrase brief ceiling dream rack install fault insane panic surround glory <b>?</b> library brother hill sauce access child notice picnic dinner panda purity poem</i>"
-                    </p>
-                    <p>
-                    
-                    The tool suggests several options for the missing word and the relevant one will be "asset". We can verify that by clicking on the link of the dervied Ethereum address ("0x2dfF20b40504f99c6314ac30e8DF5c02dd8058e7" listed in the "BIP44 ETH Address" column) and checking the address has transaction history.
-                    <figure>
-                        <img src="img/seed demo annotated.gif" alt="Demo" style="width:100%">
-                            
-                    </figure>
-                  
+                      <p>Remember to have a proper backup of your seed phrase. You can secure your seed phrase on solid <a href="https://getcoinplate.com/blog/the-best-crypto-seed-phrase-storage-the-ultimate-guide/" target="_blank" rel="noreferrer noopener">seed phrase storage</a> tool like <a href="https://getcoinplate.com/" target="_blank" rel="noreferrer noopener">Coinplate</a>.</p>
                 </div>
             </div>
-
-            <hr>
-
             <div class="row">
                 <div class="col-md-12">
-
-                    <h2>Offline Usage</h2>
-
+                  <h3 id="h-read-more">Read more</h3>
+                  <p>With BIP39 recovery phrase&nbsp;(also called&nbsp;mnemonic phrase), user can backup and recover Bitcoin and other cryptocurrency wallets without the need to use complicated private keys.</p>
+                  <p>The BIP39 protocol uses a list of 2048 carefully chosen english words. Although the lists in different languages exists, it is usually not recommended to use them because most wallets do support only english words. Read more about <a href="https://getcoinplate.com/blog/what-is-bip39-mnemonic-phrase-2022-update/" target="_blank" rel="noreferrer noopener">BIP39 standard</a>.</p>
+                  <p>related: <a href="https://getcoinplate.com/blog/official-bip39-word-list-mnemonic-in-english-verified/" target="_blank" rel="noreferrer noopener">BIP39 Wordlist</a> , <a href="https://getcoinplate.com/blog/bip39-compatible-wallets-list-2022-updated/" target="_blank" rel="noreferrer noopener">BIP39 compatible wallets list</a></p>
+<br>
+ <p><b> Check out also our <a href="https://getcoinplate.com/bip39-seed-phrase-mnemonics-generator-offline-online-tool/" target="_blank" rel="noreferrer noopener">BIP39 Seed Phrase Generator </a></b></p>
+                  <h3 id="h-license">License</h3>
+                  <p>The software is provided "as is", without warranty of any kind, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose and noninfringement. In no event shall the authors or copyright holders be liable for any claim, damages or other liability, whether in an action of contract, tort or otherwise, arising from, out of or in connection with the software or the use or other dealings in the software.</p>
+                  <details>
+                  <summary><b>License details</b></summary>
+                  <p>The MIT License (MIT)
+                Copyright (c) 2022 Coinplate</p>
+                <p>
+                Permission is hereby granted, free of charge, to any person obtaining a copy
+                of this software and associated documentation files (the "Software"), to deal
+                in the Software without restriction, including without limitation the rights
+                to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+                copies of the Software, and to permit persons to whom the Software is
+                furnished to do so, subject to the following conditions: </p>
+                <p>
+                The above copyright notice and this permission notice shall be included in
+                all copies or substantial portions of the Software.</p>
+                THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+                IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+                FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+                AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+                LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+                OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+                THE SOFTWARE.<p></p>
+                </details>
+                <h3 id="h-source-code">Source code</h3>
+                    <p>You can check the full source code by downloading the offline version file above or visit our <a href="https://github.com/Coinplate/BIP39-Recoverer-Seed-Phrase-Recovery-Tool" target="_blank" rel="noreferrer noopener">github</a> and download from there.</p>
                     <p>
-                    You can use this tool without having to be online.
-                    </p>
-                    <p>
-                    In your browser, select file save-as, and save this page
-                    as a file.
-                    </p>
-                    <p>
-                    Double-click that file to open it in a browser
-                    on any offline computer.
-                    </p>
-                    <p>
-                    <span>Alternatively, download the file from the repository</span>
-                    -
-                    <a href="https://github.com/3rdIteration/mnemonic-recovery/">https://github.com/3rdIteration/mnemonic-recovery/</a>
-                    </p>
-
                 </div>
             </div>
-
-            <hr>
-
-            <div class="row">
-                <div class="col-md-12">
-
-                    <h2>This project is 100% open-source code</h2>
-
-                    <p>
-                        <span>Get the source code from the repository</span>
-                        -
-                        <a href="https://github.com/3rdIteration/mnemonic-recovery" target="_blank">
-                            https://github.com/3rdIteration/mnemonic-recovery
-                        </a>
-                    </p>
-                    
-                    <p>
-						<span>The project is based on Ian Coleman's Bip39 project. Get Bip39's source code from the repository</span>
-						-
-						<a href="https://github.com/iancoleman/bip39" target="_blank">
-							https://github.com/iancoleman/bip39
-						</a>
-					</p>
-					
-					<p>
-						<span>The tool is a minimally modifed version of the Seed Savior Tool found here:</span>
-						-
-						<a href="https://kzen-networks.github.io/mnemonic-recovery/" target="_blank">
-							https://kzen-networks.github.io/mnemonic-recovery/
-						</a>
-						<br>
-						<span><i>It's possible the changes I added will be merged into the main project, but I have forked it in the mean time while I add some interface tweaks to make it a bit more n00b friendly.</i></span>
-					</p>
-		  
-                    <h3>Libraries</h3>
-
-                    <p>
-                        <span>BitcoinJS - </span>
-                        <a href="https://github.com/bitcoinjs/bitcoinjs-lib" target="_blank">
-                            https://github.com/bitcoinjs/bitcoinjs-lib
-                        </a>
-                    </p>
-
-                    <p>
-                        <span>jsBIP39 - </span>
-                        <a href="https://github.com/iancoleman/jsbip39" target="_blank">
-                            https://github.com/iancoleman/jsbip39
-                        </a>
-                    </p>
-
-                    <p>
-                        <span>sjcl - </span>
-                        <a href="https://github.com/bitwiseshiftleft/sjcl" target="_blank">
-                            https://github.com/bitwiseshiftleft/sjcl
-                        </a>
-                    </p>
-
-                    <p>
-                        <span>jQuery - </span>
-                        <a href="https://jquery.com/" target="_blank">
-                            https://jquery.com/
-                        </a>
-                    </p>
-
-                    <p>
-                        <span>Twitter Bootstrap - </span>
-                        <a href="http://getbootstrap.com/" target="_blank">
-                            http://getbootstrap.com/
-                        </a>
-                    </p>
-
-                </div>
-            </div>
-
-        </div>
-
         <div class="qr-container hidden">
             <div class="qr-hint bg-primary hidden">Click field to hide QR</div>
             <div class="qr-hint bg-primary">Click field to show QR</div>
@@ -269,11 +200,9 @@
                 <div class="qr-warning bg-primary">Caution: Scanner may keep history</div>
             </div>
         </div>
-
         <div class="feedback-container">
             <div class="feedback">Loading...</div>
         </div>
-
         <script type="text/template" id="address-row-template">
             <tr>
                 <td class="index"><span></span></td>
@@ -282,7 +211,7 @@
                 <td class="privkey private-data"><span data-show-qr></span></td>
             </tr>
         </script>
-        <script src="js/polyfill.es6.js"></script>
+         <script src="js/polyfill.es6.js"></script>
         <script src="js/basex.js"></script>
         <script src="js/unorm.js"></script>
         <script src="js/jquery-3.2.1.js"></script>

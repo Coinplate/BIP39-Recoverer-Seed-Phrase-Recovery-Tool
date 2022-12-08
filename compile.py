@@ -42,7 +42,7 @@ for style in styles:
 
 # Write the standalone file
 
-f = open('mnemonic-standalone.html', 'w', encoding="utf-8")
+f = open('BIP39_Recoverer_standalone_offline.html', 'w', encoding="utf-8")
 f.write(page)
 f.close()
 
