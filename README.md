@@ -1,4 +1,4 @@
-# Seed Savior-Iteration
+# BIP39 Recoverer: seed phrase recovery tool
 
 A fork of tool for recovering BIP39 seed phrases.
 
