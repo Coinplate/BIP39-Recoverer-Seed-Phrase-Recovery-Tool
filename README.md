@@ -8,9 +8,19 @@ Trezor: Recovery failed. Error details: Mnemonic is not valid
 
 Any of the above errors can really ruin your day, especially if you have lost/damanged/reset your hardware wallet. The aim of this tool is to be a 1st (and hopefully only) step required to recover your 24 word seed. It is quick and easy to understand and will work on any system with nothing more than a browser. If you don't have success with this tool, then you can try BTCRecover, (https://github.com/gurnec/btcrecover) though it hasn't been updated in some time.
 
+## How to use
+Enter your 12 or 24 words BIP39 seed phrase. Use the tool OFFLINE for recovery.
+If one of your words is incorrect, the tool will try to suggest similar, correct words. Try them out.
+If you are unsure about one of the words, replace it with ? . The tool will calculate all possible words that work. Check them in your wallet or check if any of the calculated addressess is yours.
+To calculate the checksum (last word - either 12th or 24th), put ? instead of last word. The tool will calculate all correct checksum words - 8 potenial words for 24th and 128 words for 12th.
 
+example: enter a 12 or 24 words seed phrase: "phrase brief ceiling dream rack install fault insane panic surround glory ? library brother hill sauce access child notice picnic dinner panda purity poem"
 
-For more context and background of the original tool, please see the blog post https://medium.com/kzen-networks/the-wallet-seed-saviors-2cad8ae542f3 
+Note: 12 word seed phrases will take significantly longer to process due to the large number of possibilities for a unknown word.
+
+Enter your seed phrase into the 'BIP39 Phrase' field. If a word is missing or unknown, please type "?" instead and the tool will find all relevant options. If a word is wrong, the tool will try to suggest the closest option.
+
+The tool will suggest all relevant options for the missing word and the derived public addresses for Bitcoin anmd Ethereum. To find out if one of the suggested addresses is actually the right one, you can click on the suggested address  tocheck the address' transaction history on a block explorer.
 
 **If you found this tool useful, you can tip us or buy a metal crypto wallet from [our store](https://getcoinplate.com/).**
 
@@ -22,19 +32,12 @@ For more context and background of the original tool, please see the blog post h
 
 **See the tool in action - online version -  [BIP39 Seed Phrase Generator](https://getcoinplate.com/bip39-seed-phrase-mnemonics-generator-offline-online-tool/)**
 
-## Standalone offline version
+## Security notes & offline use
 
-Download `BIP39_Recoverer_standalone_offline.html`
+You can use this tool 100% offline. For security it is preferable to use offline fresh system install or system on live usb. Download `BIP39_Recoverer_standalone_offline.html` file and open it in a browser.
 
-Open the file in a browser by double clicking it.
 
-This can be compiled from source using the command `python compile.py`
-
-## Usage
-
-Enter your seed phrase into the 'BIP39 Phrase' field. If a word is missing or unknown, please type "?" instead and the tool will find all relevant options. If a word is wrong, the tool will try to suggest the closest option.
-
-The tool will suggest all relevant options for the missing word and the derived public addresses for Bitcoin anmd Ethereum. To find out if one of the suggested addresses is actually the right one, you can click on the suggested address  tocheck the address' transaction history on a block explorer.
+**It's important to have a proper [seed phrase storage](https://getcoinplate.com/blog/the-best-crypto-seed-phrase-storage-the-ultimate-guide/).**
 
 
 ## Check out our other tools:
@@ -52,6 +55,7 @@ Make changes in `src/*`.
 Changes are applied during release using the command `python compile.py`, so
 please do not commit changes to `mnemonic.html`
 
+Source code: You can see the full source code in standalone, offline html file. Alternatively you can check the individual css and js files in the online version folder, where the direct copy of website version is stored. This is free and opensource tool.
 
 
 
