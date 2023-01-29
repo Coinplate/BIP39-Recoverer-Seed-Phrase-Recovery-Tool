@@ -30,7 +30,7 @@ The tool will suggest all relevant options for the missing word and the derived 
 - XLM: GDXZ7YE2QZN2FT4CDY2QREQ6ZV3A76CJQIYZZQ4CTX6XU7PBO3JOKTKS
 - ADA: addr1q88l806507plwz0gl3e44mw78fkjn4jekk4st8tk2yaca7u09dknhhq52pqmg70v2h45g3spnr0jxd9yz4w9a5v2j0kq0sg74f
 
-**See the tool in action - online version -  [BIP39 Seed Phrase Generator](https://getcoinplate.com/bip39-seed-phrase-mnemonics-generator-offline-online-tool/)**
+**See the tool in action - online version -  [BIP39 Recoverer](https://getcoinplate.com/bip39-recoverer-seed-phrase-recovery-tool/)**
 
 ## Security notes & offline use
 
